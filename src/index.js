@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 import Header from './components/Header';
-// import registerServiceWorker from './registerServiceWorker';
+import SearchContainer from './containers/SearchContainer';
+
 
 ReactDOM.render(
-    <Header />,
+    // <Header />,
+    <SearchContainer />,
     document.getElementById('root')
 );
-
-// registerServiceWorker();
