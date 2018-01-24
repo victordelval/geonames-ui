@@ -4,7 +4,10 @@
   "private": true,
   "homepage": "http://victordelval.github.io/geonames-ui",
   "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-15.4": "^1.0.5",
     "gh-pages": "^0.12.0",
+    "react-addons-test-utils": "^15.6.2",
     "react-scripts": "0.8.3"
   },
   "dependencies": {
@@ -21,6 +24,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "clear": "rimraf build",
-    "deploy": "npm run build&&gh-pages -d build"
+    "deploy": "npm run build && gh-pages -d build"
   }
 }

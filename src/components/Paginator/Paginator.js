@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import './Paginator.css';
 
-export default PaginatedComponent =>
-    class extends React.Component {
+export default PaginatedComponent => {
+    class Paginator extends React.Component {
 
         static propTypes = {
             itemsPerPage: PropTypes.number.isRequired,
@@ -113,3 +113,9 @@ export default PaginatedComponent =>
         }
 
     }
+
+    // propiedad estatica de la clase
+    Paginator.WrappedComponent = PaginatedComponent;
+
+    return Paginator;
+}
