@@ -1,13 +1,23 @@
+// Libs
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Route, hashHistory } from 'react-router';
+
+// Styles
 import './index.css';
 
-import Header from './components/Header';
-import SearchContainer from './containers/SearchContainer';
+// Components
+import BaseContainer from './containers/BaseContainer';
+import DetailsContainer from './containers/DetailsContainer';
+import About from './components/About';
 
 
 ReactDOM.render(
-    // <Header />,
-    <SearchContainer />,
+    <Router history={ hashHistory }>
+        <Route path="/" component={ BaseContainer }>
+            <Route path=":location" component={ DetailsContainer } />
+            <Route path="about" component={ About } />
+        </Route>
+    </Router>,
     document.getElementById('root')
 );

@@ -19,9 +19,6 @@ class LocationList extends React.PureComponent {
   renderMessage() {
     let text = '', l = this.props.data.length;
 
-    console.log("this.props")
-    console.log(this.props)
-
     if (this.props.loading) {
       text = <span>Searching results for <b>{ this.props.search }</b></span>;
     } else if (l > 0) {
