@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 // import GithubAvatar from '../GithubAvatar';
 
 /**
- * Renderiza la información relativa a un locationsitorio
+ * Renderiza la información relativa a un location
  */
 class LocationRow extends React.PureComponent {
   /**

@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 
 import LocationRow from '../LocationRow';
 import HintMessage from '../HintMessage';
+import Paginator from '../Paginator';
 
 /**
  * Muestra los repositorios en una lista.
@@ -69,4 +70,4 @@ class LocationList extends React.PureComponent {
 }
 
 // Export the class
-export default LocationList;
+export default Paginator(LocationList);
