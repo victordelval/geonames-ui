@@ -16,64 +16,15 @@ import { connect } from 'react-redux';
  */
 class SearchContainer extends React.Component {
 
-  // Borramos todo lo referente al estado, ya que ahora lo obtenemos
-  // del store
-
-  // constructor(props) {
-  //   super(props);
-  //   // Binds
-  //   this.onSubmit = this.onSubmit.bind(this);
-  //   this.state = {
-  //     loading: false,
-  //     results: [],
-  //     search: '',
-  //     queried: false
-  //   }
-  // }
-
-  /**
-   * Datos falsos. Los utilizamos en desarrollo hasta que leamos los datos de
-   * la API.
-   */
-  stubData() {
-    let repo = {
-      full_name: 'My Location',
-      owner: {
-        login: 'Angel',
-        avatar_url: 'https://avatars.githubusercontent.com/u/4056725?v=3',
-        html_url: 'https://github.com/Angelmmiguel'
-      },
-      stargazers_count: 10,
-      forks_count: 5
-    }
-    return [
-      Object.assign({}, repo),
-      Object.assign({}, repo),
-      Object.assign({}, repo),
-      Object.assign({}, repo),
-      Object.assign({}, repo),
-      Object.assign({}, repo),
-      Object.assign({}, repo),
-      Object.assign({}, repo),
-      Object.assign({}, repo),
-      Object.assign({}, repo)
-    ]
-  }
-
-  // onSubmit(value) {
   onSubmit = value => {
-    // this.setState({ loading: true});
     this.props.dispatch(startSearch(value));
-
-    setTimeout(() => {
-      this.props.dispatch(successSearch(this.stubData()))
-      // this.setState({
-      //   search: value,
-      //   loading: false,
-      //   queried: true,
-      //   results: this.stubData()
-      // });
-    }, 2000);
+    fetch(`http://api.geonames.org/searchJSON?q=${ value }&maxRows=10&username=victordelval`)
+      .then(res => {
+        return res.json();
+      })
+      .then(json => {
+        this.props.dispatch(successSearch(json.geonames))
+      })
   }
 
   /**
