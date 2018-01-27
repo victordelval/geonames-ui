@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 
 // Componentes
-// import ReleaseList from '../../components/ReleaseList';
+import NearbyPlaceList from '../../components/NearbyPlaceList';
 
 /**
- * Este container muestra los detalles para un repo concreto. Se renderiza cuando
- * un usuario accede a /:user/:repo. En el veremos la lista de releases con
+ * Este container muestra los detalles para una localizacion concreto. Se renderiza cuando
+ * un usuario accede a /:user/:repo. En el veremos la lista de places con
  * los detalles de cada una de ellas.
  */
 class DetailsContainer extends React.Component {
@@ -30,7 +30,7 @@ class DetailsContainer extends React.Component {
     this.back = this.back.bind(this);
 
     this.state = {
-      releases: [],
+      places: [],
       loading: true
     }
   }
@@ -45,7 +45,7 @@ class DetailsContainer extends React.Component {
       }).then(json => {
         this.setState({
           loading: false,
-          places: json
+          places: json.geonames
         })
       })
   }
@@ -70,9 +70,9 @@ class DetailsContainer extends React.Component {
     return <section>
       <h2><b>{ this.props.params.location }</b> exploration page</h2>
       <button onClick={ this.back }>Back</button>
-      {/* <ReleaseList data={ this.state.releases } loading={ this.state.loading }
-        repoName={ this.repoName } total={ this.state.releases.length }
-        itemsPerPage={ 5 }/> */}
+      <NearbyPlaceList data={ this.state.places } loading={ this.state.loading }
+        location={ this.props.params.location } total={ this.state.places.length }
+        itemsPerPage={ 5 }/>
     </section>;
   }
 }
