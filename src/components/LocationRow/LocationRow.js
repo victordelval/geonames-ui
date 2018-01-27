@@ -27,10 +27,10 @@ class LocationRow extends React.PureComponent {
       <td>{ location.toponymName }</td>
       <td>{ location.countryName }</td>
       <td>{ location.fcodeName }</td>
-      <td>{ location.lat }</td>
-      <td>{ location.lng }</td>
+      {/* <td>{ location.lat }</td>
+      <td>{ location.lng }</td> */}
       <td className="align-right">
-        <Link className="button button-primary" to={ `/${location.full_name}`}>Details / Map</Link>
+        <Link className="button button-primary" to={ `/${location.name}`}>Details / Map</Link>
       </td>
     </tr>
   }
