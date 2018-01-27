@@ -16,11 +16,8 @@ class DetailsContainer extends React.Component {
     // Este objeto contiene los valores de los campos definidos en Router
     // para la URL. En este caso, tendremos :user y :repo
     params: PropTypes.shape({
-    //   user: PropTypes.string.isRequired,
-      repo: PropTypes.string.isRequired
-    }).isRequired,
-
-    router: PropTypes.object.isRequired
+      location: PropTypes.string.isRequired
+    }).isRequired
   };
 
   /**
@@ -40,17 +37,21 @@ class DetailsContainer extends React.Component {
 
   // Load the data
   componentDidMount() {
-    fetch(`https://api.github.com/repos/${ this.repoName }/releases`)
+    this.setState({ loading: true });
+    // hardcoded bounding box in the url...
+    fetch(`http://api.geonames.org/searchJSON?${ this.queryDetails }`)
       .then(res => {
-        return res.json()
+        return res.json();
+      }).then(json => {
+        this.setState({
+          loading: false,
+          places: json
+        })
       })
-      .then(res => {
-        this.setState({ releases: res, loading: false });
-      })
-      .catch(err => {
-        console.log(err);
-        this.setState({ loading: false });
-      })
+  }
+
+  get queryDetails() {
+    return `q=${ this.props.params.location }&north=40.43374304623162&east=-3.683537891387914&south=40.400252786235214&west=-3.722462108612035&maxRows=100&username=victordelval`;
   }
 
   back() {
@@ -67,7 +68,8 @@ class DetailsContainer extends React.Component {
    */
   render() {
     return <section>
-      <h2>Releases of <b>{ this.repoName } (<button onClick={ this.back }>Back</button>) </b></h2>
+      <h2><b>{ this.props.params.location }</b> exploration page</h2>
+      <button onClick={ this.back }>Back</button>
       {/* <ReleaseList data={ this.state.releases } loading={ this.state.loading }
         repoName={ this.repoName } total={ this.state.releases.length }
         itemsPerPage={ 5 }/> */}
