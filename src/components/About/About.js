@@ -14,8 +14,8 @@ class About extends React.Component {
     return false;
   }
 
-  get openWebinarsLink() {
-    return 'https://openwebinars.net/cursos/react-js/';
+  get geoNamesLink() {
+    return 'http://www.geonames.org/';
   }
 
   /**
@@ -23,8 +23,9 @@ class About extends React.Component {
    */
   render() {
     return <section className="About">
-      <p>Esta aplicación es parte del curso de React impartido en
-        { ' ' }<ExternalLink to={ this.openWebinarsLink }>OpenWebinars</ExternalLink>
+      <p>ReactJS spa to use the api of
+        { ' ' }<ExternalLink to={ this.geoNamesLink }>geonames.org</ExternalLink>.
+        First steps with React and its technological ecosystem.
       </p>
     </section>
   }

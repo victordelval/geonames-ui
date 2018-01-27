@@ -1,3 +1,7 @@
+// Redux store and high order components
+import store from './store';
+import { Provider } from 'react-redux';
+
 // Libs
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -13,11 +17,13 @@ import About from './components/About';
 
 
 ReactDOM.render(
-    <Router history={ hashHistory }>
-        <Route path="/" component={ BaseContainer }>
-            <Route path=":location" component={ DetailsContainer } />
-            <Route path="about" component={ About } />
-        </Route>
-    </Router>,
+    <Provider store={ store } >
+        <Router history={ hashHistory } >
+            <Route path="/" component={ BaseContainer } >
+                {/* <Route path=":location" component={ DetailsContainer } /> */}
+                <Route path="about" component={ About } />
+            </Route>
+        </Router>
+    </Provider>,
     document.getElementById('root')
 );
