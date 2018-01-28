@@ -18,3 +18,18 @@ export const successSearch = results => {
         results
     }
 }
+
+export const searchLocations = value =>
+    dispatch => {
+        dispatch(startSearch(value));
+
+        // here we use fetch to request the data to the serve, and a promise is returned
+        fetch(`http://api.geonames.org/searchJSON?q=${ value }&maxRows=10&username=victordelval`)
+        .then(res => {
+            // data is a string buffer, so we transform it to json
+            return res.json();
+        })
+        .then(json => {
+            dispatch(successSearch(json.geonames))
+        });
+    }
