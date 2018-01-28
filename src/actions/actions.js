@@ -12,24 +12,41 @@ export const startSearch = search => {
     }
 }
 
-export const successSearch = results => {
+// export const successSearch = results => {
+//     return {
+//         type: 'SEARCH_SUCCESS',
+//         results
+//     }
+// }
+
+export const searchLocations = search => {
     return {
-        type: 'SEARCH_SUCCESS',
-        results
+        type: 'SEARCH',
+        payload: fetch(`http://api.geonames.org/searchJSON?q=${ search }&maxRows=10&username=victordelval`)
+            .then(res => {
+                // data is a string buffer, so we transform it to json
+                return res.json();
+            })
+            .then(json => {
+                return json.geonames;
+            })
     }
 }
 
-export const searchLocations = value =>
-    dispatch => {
-        dispatch(startSearch(value));
 
-        // here we use fetch to request the data to the serve, and a promise is returned
-        fetch(`http://api.geonames.org/searchJSON?q=${ value }&maxRows=10&username=victordelval`)
-        .then(res => {
-            // data is a string buffer, so we transform it to json
-            return res.json();
-        })
-        .then(json => {
-            dispatch(successSearch(json.geonames))
-        });
-    }
+
+// action using Thunk is a function that returns a function instead of an object
+// export const searchLocations = value =>
+//     dispatch => {
+//         dispatch(startSearch(value));
+
+//         // here we use fetch to request the data to the serve, and a promise is returned
+//         fetch(`http://api.geonames.org/searchJSON?q=${ value }&maxRows=10&username=victordelval`)
+//         .then(res => {
+//             // data is a string buffer, so we transform it to json
+//             return res.json();
+//         })
+//         .then(json => {
+//             dispatch(successSearch(json.geonames))
+//         });
+//     }

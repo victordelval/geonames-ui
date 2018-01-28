@@ -24,10 +24,16 @@ const reducer = (state = initialState, action) => {
             return Object.assign({}, state, { loading: true, search: action.search });
         }
 
-        case 'SEARCH_SUCCESS': {
+        case 'SEARCH': {
+            let results = [];
+
+            if (!action.error) {
+                results = action.payload
+            }
+
             return Object.assign({}, state, {
                 loading: false,
-                results: action.results,
+                results: results,
                 queried: true
             })
         }

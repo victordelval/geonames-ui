@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Actions
-import { searchLocations } from '../../actions/actions';
+import { searchLocations, startSearch } from '../../actions/actions';
 
 // Importamos los componentes
 import SearchForm from '../../components/SearchForm';
@@ -17,6 +17,10 @@ import { connect } from 'react-redux';
 class SearchContainer extends React.Component {
 
   onSubmit = value => {
+    // this.props.dispatch(searchLocations(value));
+
+    this.props.dispatch(startSearch(value));
+
     this.props.dispatch(searchLocations(value));
   }
 

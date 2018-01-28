@@ -3,14 +3,16 @@
  */
 
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+// import thunk from 'redux-thunk';
+import promiseMiddleware from 'redux-promise';
 
 import Reducer from './reducers/reducer';
 
 // the reducer defines the data structure and the initial values
 const store = createStore(
     Reducer,
-    applyMiddleware(thunk)
+    applyMiddleware(promiseMiddleware)
+    // applyMiddleware(thunk)
 );
 
 export default store;
