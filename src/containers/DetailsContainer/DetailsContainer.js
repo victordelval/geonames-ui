@@ -47,8 +47,7 @@ class DetailsContainer extends React.Component {
   // Load the data
   componentDidMount() {
     this.setState({ loading: true });
-    // hardcoded bounding box in the url...
-    fetch(`http://api.geonames.org/searchJSON?${ this.queryDetails }`)
+    fetch(`http://api.geonames.org/findNearbyJSON?${this.queryDetails}`)
       .then(res => {
         return res.json();
       }).then(json => {
