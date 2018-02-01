@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 // Componentes
 import NearbyPlaceList from '../../components/NearbyPlaceList';
+import Map from '../../components/Map';
 
 /**
  * Este container muestra los detalles para una localizacion concreto. Se renderiza cuando
@@ -17,7 +18,14 @@ class DetailsContainer extends React.Component {
     // Este objeto contiene los valores de los campos definidos en Router
     // para la URL. En este caso, tendremos :user y :repo
     params: PropTypes.shape({
-      location: PropTypes.string.isRequired
+      place: PropTypes.string.isRequired
+    }).isRequired,
+
+    location: PropTypes.shape({
+      state: PropTypes.shape({
+        latitude: PropTypes.string.isRequired,
+        longitude: PropTypes.string.isRequired
+      }).isRequired
     }).isRequired
   };
 
@@ -52,7 +60,7 @@ class DetailsContainer extends React.Component {
   }
 
   get queryDetails() {
-    return `q=${ this.props.params.location }&north=40.43374304623162&east=-3.683537891387914&south=40.400252786235214&west=-3.722462108612035&maxRows=100&username=victordelval`;
+    return `q=${ this.props.params.place }&north=40.43374304623162&east=-3.683537891387914&south=40.400252786235214&west=-3.722462108612035&maxRows=100&username=victordelval`;
   }
 
   back() {
@@ -68,12 +76,16 @@ class DetailsContainer extends React.Component {
    * UI del contenedor
    */
   render() {
+
+    console.log(">>>>>>>>>>")
+    console.log(this.props.location.state)
     return <section>
-      <h2><b>{ this.props.params.location }</b> exploration page</h2>
+      <h2><b>{ this.props.params.place }</b> exploration page</h2>
       <button onClick={ this.back }>Back</button>
       <NearbyPlaceList data={ this.state.places } loading={ this.state.loading }
-        location={ this.props.params.location } total={ this.state.places.length }
+        location={ this.props.params.place } total={ this.state.places.length }
         itemsPerPage={ 5 }/>
+      <Map coordinates={ this.props.location.state } data={ this.state.places } />
     </section>;
   }
 }

@@ -28,10 +28,15 @@ class LocationRow extends React.PureComponent {
       <td>{ location.toponymName }</td>
       <td>{ location.countryName }</td>
       <td>{ location.fcodeName }</td>
-      {/* <td>{ location.lat }</td>
-      <td>{ location.lng }</td> */}
       <td className="align-right">
-        <Link className="button button-primary" to={ `/${location.name}`}>Details / Map</Link>
+        <Link
+          className="button button-primary"
+          to={{
+            pathname: `/${location.name}`,
+            state: { latitude: location.lat, longitude: location.lng },
+            // search: `?lat=${location.lat}`
+          }} >
+          Details / Map</Link>
       </td>
     </tr>
   }
