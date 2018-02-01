@@ -34,7 +34,6 @@ class LocationRow extends React.PureComponent {
           to={{
             pathname: `/${location.name}`,
             state: { latitude: location.lat, longitude: location.lng },
-            // search: `?lat=${location.lat}`
           }} >
           Details / Map</Link>
       </td>

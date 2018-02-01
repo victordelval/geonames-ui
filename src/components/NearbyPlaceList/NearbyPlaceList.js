@@ -24,11 +24,11 @@ class NearbyPlaceList extends React.PureComponent {
     let text = '';
 
     if (this.props.loading) {
-      text = <span>Retrieving NearbyPlaces of <b>{ this.props.location }</b></span>;
+      text = <span>Retrieving places of <b>{ this.props.location }</b></span>;
     } else if (this.props.total === 0) {
-      text = <span><b>{ this.props.location }</b> doesn't have any public NearbyPlace</span>;
+      text = <span><b>{ this.props.location }</b> doesn't have any public places</span>;
     } else {
-      text = <span>Showing <b>{ this.props.total }</b> NearbyPlaces of <b>{ this.props.location }</b></span>;
+      text = <span>Showing <b>{ this.props.total }</b> places of <b>{ this.props.location }</b></span>;
     }
 
     return <HintMessage>{ text }</HintMessage>;
@@ -43,14 +43,14 @@ class NearbyPlaceList extends React.PureComponent {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Code</th>
+            <th>Type</th>
             <th>Clasification</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           { this.props.data.map(nearbyPlace =>
-            <NearbyPlaceRow nearbyPlace={ nearbyPlace } key={ nearbyPlace.id } />
+            <NearbyPlaceRow nearbyPlace={ nearbyPlace } key={ nearbyPlace.geonameId } />
           )}
         </tbody>
       </table>;

@@ -60,32 +60,31 @@ class DetailsContainer extends React.Component {
   }
 
   get queryDetails() {
-    return `q=${ this.props.params.place }&north=40.43374304623162&east=-3.683537891387914&south=40.400252786235214&west=-3.722462108612035&maxRows=100&username=victordelval`;
+    const latitude = this.props.location.state.latitude;
+    const longitude = this.props.location.state.longitude;
+    const radius = 5;
+    const maxRows = 500;
+    return `lat=${latitude}&lng=${longitude}&radius=${radius}&maxRows=${maxRows}&featureCode!=HTL&username=victordelval`;
   }
 
   back() {
     this.props.router.goBack();
   }
 
-  // Devuelve el nombre del repo
-//   get repoName() {
-//     return `${this.props.params.user}/${this.props.params.repo}`;
-//   }
 
   /**
    * UI del contenedor
    */
   render() {
-
-    console.log(">>>>>>>>>>")
-    console.log(this.props.location.state)
     return <section>
-      <h2><b>{ this.props.params.place }</b> exploration page</h2>
-      <button onClick={ this.back }>Back</button>
-      <Map coordinates={ this.props.location.state } data={ this.state.places } />
-      <NearbyPlaceList data={ this.state.places } loading={ this.state.loading }
-        location={ this.props.params.place } total={ this.state.places.length }
-        itemsPerPage={ 5 }/>
+      <button onClick={this.back} style={{ float: 'right' }}>Back</button>
+      <h2><b>{this.props.params.place}</b> places</h2>
+      <div style={{ paddingBottom: '30px' }} >
+        <Map coordinates={this.props.location.state} data={this.state.places} />
+      </div>
+      <NearbyPlaceList data={this.state.places} loading={this.state.loading}
+        location={this.props.params.place} total={this.state.places.length}
+        itemsPerPage={5} />
     </section>;
   }
 }

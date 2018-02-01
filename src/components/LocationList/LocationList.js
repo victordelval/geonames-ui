@@ -21,22 +21,22 @@ class LocationList extends React.PureComponent {
     let text = '', l = this.props.data.length;
 
     if (this.props.loading) {
-      text = <span>Searching results for <b>{ this.props.search }</b></span>;
+      text = <span>Searching results for <b>{this.props.search}</b></span>;
     } else if (l > 0) {
-      text = <span>We found <b>{ l }</b> locations for <b>{ this.props.search }</b></span>;
+      text = <span>We found <b>{l}</b> locations for <b>{this.props.search}</b></span>;
     } else if (l === 0 && this.props.queried) {
       text = <span>
-        We could't find any locations matching <b>{ this.props.search }</b>. Try another terms please.
+        We could't find any locations matching <b>{this.props.search}</b>. Try another terms please.
       </span>;
     } else {
       text = 'Type the name of a Location and click search';
     }
     // Return p
-    return <HintMessage>{ text }</HintMessage>;
+    return <HintMessage>{text}</HintMessage>;
   }
 
   renderTable() {
-    if(this.props.data.length === 0) { return null; }
+    if (this.props.data.length === 0) { return null; }
 
     return <table className="u-full-width">
       <thead>
@@ -48,8 +48,8 @@ class LocationList extends React.PureComponent {
         </tr>
       </thead>
       <tbody>
-        { this.props.data.map(location =>
-          <LocationRow location={ location } key={ location.id } />
+        {this.props.data.map(location =>
+          <LocationRow location={location} key={location.geonameId} />
         )}
       </tbody>
     </table>;
@@ -60,8 +60,8 @@ class LocationList extends React.PureComponent {
    */
   render() {
     return <section className="LocationList">
-      { this.renderMessage() }
-      { this.renderTable() }
+      {this.renderMessage()}
+      {this.renderTable()}
     </section>;
   }
 }
