@@ -44,8 +44,6 @@ class LocationList extends React.PureComponent {
           <th>Name</th>
           <th>Country</th>
           <th>Feature class</th>
-          {/* <th>Latitude</th>
-          <th>Longitude</th> */}
           <th></th>
         </tr>
       </thead>

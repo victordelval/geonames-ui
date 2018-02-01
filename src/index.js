@@ -18,20 +18,6 @@ import BaseContainer from './containers/BaseContainer';
 import DetailsContainer from './containers/DetailsContainer';
 import About from './components/About';
 
-// console.log(">>> process.env.")
-// console.log(process.env.MapboxAccessToken)
-// console.log(process.env.REACT_APP_SECRET)
-
-// MapboxAccessToken = "pk.eyJ1IjoidmljdG9yZGVsdmFsIiwiYSI6IktrNVNPQ00ifQ.axLtszv3eOhChdcfh91G6A";
-
-
-// const result = dotenv.config()
-
-// if (result.error) {
-//   throw result.error
-// }
-
-// console.log(result.parsed)
 
 ReactDOM.render(
     <Provider store={ store } >

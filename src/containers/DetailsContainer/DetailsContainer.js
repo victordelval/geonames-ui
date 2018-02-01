@@ -82,10 +82,10 @@ class DetailsContainer extends React.Component {
     return <section>
       <h2><b>{ this.props.params.place }</b> exploration page</h2>
       <button onClick={ this.back }>Back</button>
+      <Map coordinates={ this.props.location.state } data={ this.state.places } />
       <NearbyPlaceList data={ this.state.places } loading={ this.state.loading }
         location={ this.props.params.place } total={ this.state.places.length }
         itemsPerPage={ 5 }/>
-      <Map coordinates={ this.props.location.state } data={ this.state.places } />
     </section>;
   }
 }
