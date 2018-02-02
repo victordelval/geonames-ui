@@ -1,5 +1,5 @@
 // secret settings with .env
-require('dotenv').config()
+// require('dotenv').config()
 
 // Redux store and high order components
 import store from './store';

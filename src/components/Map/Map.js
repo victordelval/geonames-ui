@@ -92,13 +92,14 @@ class Map extends React.Component {
 
 
     render() {
+        const MAPBOX_TOKEN = "pk.eyJ1IjoidmljdG9yZGVsdmFsIiwiYSI6IktrNVNPQ00ifQ.axLtszv3eOhChdcfh91G6A";
         const { viewport } = this.state;
         return (
             <MapGL
                 {...viewport}
                 mapStyle="mapbox://styles/mapbox/dark-v9"
                 onViewportChange={this._updateViewport}
-                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} >
+                mapboxApiAccessToken={MAPBOX_TOKEN} >
 
                 {this.props.data.map(this._renderPlaceMarker)}
                 {this._renderPopup()}
