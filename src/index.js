@@ -23,8 +23,8 @@ ReactDOM.render(
     <Provider store={ store } >
         <Router history={ hashHistory } >
             <Route path="/" component={ BaseContainer } >
-                <Route path=":place" component={ DetailsContainer } />
                 <Route path="about" component={ About } />
+                <Route path=":place" component={ DetailsContainer } />
             </Route>
         </Router>
     </Provider>,
